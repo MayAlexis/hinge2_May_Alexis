@@ -1,0 +1,84 @@
+#VRML_SIM R2019a utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.9953544058611433 0.08974948562193376 0.03485163645237767 5.539241076444743
+  position -0.29836385909498986 4.20797615901952 3.764822648636419
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+}
+Solid {
+  translation 0 0.5 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 0
+      }
+      geometry DEF G_CLY Cylinder {
+        height 1
+        radius 0.15
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0 0.5 0
+        staticFriction 0.05
+      }
+      endPoint Solid {
+        translation 0.25 0.525 0
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.6431372549019608 0 0
+            }
+            geometry DEF G_RBOX Box {
+              size 0.5 0.05 0.1
+            }
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 0 0 1
+              anchor 0.25 0 0
+              staticFriction 0.01
+            }
+            endPoint Solid {
+              translation 0.3 0 0
+              rotation 0 0 1 0
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                    baseColor 0.3058823529411765 0.6039215686274509 0.023529411764705882
+                  }
+                  geometry DEF G_GBOX Box {
+                    size 0.1 0.05 0.1
+                  }
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    anchor 0.05 0 0
+                    staticFriction 0.01
+                  }
+                  endPoint Solid {
+                    translation 0.125 0 0
+                  }
+                }
+              ]
+              boundingObject USE G_GBOX
+              physics Physics {
+              }
+            }
+          }
+        ]
+        boundingObject USE G_RBOX
+        physics Physics {
+        }
+      }
+    }
+  ]
+  boundingObject USE G_CLY
+}
